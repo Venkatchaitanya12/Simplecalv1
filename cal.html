@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            font-size: 24px;
+            text-align: right;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 20px;
+            font-size: 20px;
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff7b00;
+        }
+
+        button:active {
+            background-color: #ff6600;
+        }
+
+        button:nth-child(1) {
+            background-color: #f44336;
+        }
+
+        button:nth-child(1):hover {
+            background-color: #d32f2f;
+        }
+
+        button:nth-child(1):active {
+            background-color: #c62828;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="button" onclick="clearDisplay()">C</button>
+            <button class="button" onclick="appendNumber(7)">7</button>
+            <button class="button" onclick="appendNumber(8)">8</button>
+            <button class="button" onclick="appendNumber(9)">9</button>
+            <button class="button" onclick="appendOperator('+')">+</button>
+            <button class="button" onclick="appendNumber(4)">4</button>
+            <button class="button" onclick="appendNumber(5)">5</button>
+            <button class="button" onclick="appendNumber(6)">6</button>
+            <button class="button" onclick="appendOperator('-')">-</button>
+            <button class="button" onclick="appendNumber(1)">1</button>
+            <button class="button" onclick="appendNumber(2)">2</button>
+            <button class="button" onclick="appendNumber(3)">3</button>
+            <button class="button" onclick="appendOperator('*')">*</button>
+            <button class="button" onclick="appendNumber(0)">0</button>
+            <button class="button" onclick="appendOperator('.')">.</button>
+            <button class="button" onclick="calculateResult()">=</button>
+            <button class="button" onclick="appendOperator('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function appendNumber(number) {
+            display.value += number;
+        }
+
+        function appendOperator(operator) {
+            display.value += operator;
+        }
+
+        function calculateResult() {
+            try {
+                display.value = eval(display.value);
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
